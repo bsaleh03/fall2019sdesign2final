@@ -80,6 +80,8 @@ public class MainMenu extends Activity implements Serializable {
                     Intent montIntent = new Intent(MainMenu.this, SurveyPage.class);
                     montIntent.putExtra("guide_id", Integer.decode(guideId));
                     System.out.println("offtodasurvey");
+                    InternalDataAccess ida = new InternalDataAccess();
+                    ida.savePreferencesValue(getApplicationContext(), "active_guide_id", guideId);
                     startActivity(montIntent);
                 }
                 else {

@@ -682,7 +682,7 @@ public class MainActivity extends Activity {
                 //Set the boxes
                 curBar = (TextView)findViewById(timeWeekBars.get(s));
                 //index[countnum][1] = timeBars.get(s);
-                curBar.setText(nam);
+                //curBar.setText(nam);
                 for(int i = s; i < e; i++)
                 {
 

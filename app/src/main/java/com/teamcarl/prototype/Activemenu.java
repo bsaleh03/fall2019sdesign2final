@@ -137,11 +137,33 @@ public class Activemenu extends Activity {
             @Override
             public void onClick(View v) {
                 // user already logged into the system (has preferences values)
+                System.out.println(activeGuideId);
                 if (!activeGuideId.isEmpty()) {
-                    Intent intent = new Intent(Activemenu.this, Purpose.class);
-                    intent.putExtra("User", user);
-                    intent.putExtra("guideId", activeGuideId);
-                    startActivity(intent);
+                    boolean switchflag = false;
+                    DataAccess db = new DataAccess();
+                    String checkDBForSwitch = "select Switch from Guide where GuideId = '" + activeGuideId + "'";
+                    ResultSet rs = db.getDataTable(checkDBForSwitch);
+                    try{
+                        if(rs.next());
+                        {
+                            if(rs.getInt("Switch") == 1)
+                                switchflag = true;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                    if(switchflag)
+                    {
+                        Intent intent = new Intent(Activemenu.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(Activemenu.this, Purpose.class);
+                        intent.putExtra("User", user);
+                        intent.putExtra("guideId", activeGuideId);
+                        startActivity(intent);
+                    }
                 }
                 else // no active guides
                 {

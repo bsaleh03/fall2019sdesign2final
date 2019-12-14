@@ -27,6 +27,7 @@
         <activity android:name=".fullMessage" />
         <activity android:name=".Guide" />
         <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme"
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".DayView"
             android:screenOrientation="sensorLandscape" />
