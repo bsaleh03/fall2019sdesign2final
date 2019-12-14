@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.teamcarl.prototype.NewMessage"
+    android:background="@drawable/aim_memo_send">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/gridLayout3"
+        android:layout_alignRight="@+id/priority"
+        android:layout_alignEnd="@+id/priority"
+        android:orientation="horizontal"
+        android:layout_above="@+id/priority">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/tbBody"
+            android:hint="Body of message"
+            android:singleLine="true"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewStart"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            tools:scrollbars="vertical"
+            android:maxLength="8000"
+
+            android:layout_below="@+id/tbSubject"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:id="@+id/tbSubject"
+            android:text="Subject"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:maxLines="1"
+            android:maxLength="254"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp" />
+
+        <ImageButton
+            android:layout_width="177dp"
+            android:layout_height="29dp"
+            android:text="Send"
+            android:id="@+id/btnSend"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:background="@drawable/sendresponse"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/sendmessage"
+            android:layout_gravity="right"
+            android:alpha="0" />
+
+        <ImageButton
+            android:text="Cancel"
+            android:layout_width="121dp"
+            android:layout_height="163dp"
+            android:id="@+id/btnBack"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:background="@drawable/einstein"
+            android:paddingBottom="10dp"
+            android:layout_below="@+id/btnSend"
+            android:layout_alignLeft="@+id/btnSend"
+            android:layout_alignStart="@+id/btnSend" />
+
+    </GridLayout>
+
+    <Spinner
+        android:layout_width="375dp"
+        android:layout_height="60dp"
+        android:id="@+id/priority"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_gravity="bottom"
+        android:layout_columnSpan="2"
+        android:nestedScrollingEnabled="false"
+        android:touchscreenBlocksFocus="false"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
