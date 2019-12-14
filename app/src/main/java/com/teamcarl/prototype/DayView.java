@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public class DayView extends AppCompatActivity {
+public class DayView extends Activity {
     private DatabaseHelper dbhelp;
     private Button ent, era, mset, eset, sset, dset, rset, tset, hset, btweek, minor0, minor1, minor2, minor3, minor4, catButton;
     private EditText dc, nt, stime, etime, priority;
@@ -52,7 +53,7 @@ public class DayView extends AppCompatActivity {
         setContentView(R.layout.activity_day_view);
         ////////////////////////////////////////////////////////////////////////////////////////////
         //Create alert dialog for timeframe confilicts
-        AlertDialog.Builder b1 = new AlertDialog.Builder(this);
+        AlertDialog.Builder b1 = new AlertDialog.Builder(DayView.this);
         b1.setMessage("Warning! you have something scheduled during that timeframe");
         b1.setCancelable(true);
         b1.setPositiveButton(
@@ -67,7 +68,7 @@ public class DayView extends AppCompatActivity {
         final AlertDialog alertdup = b1.create();
         ////////////////////////////////////////////////////////////////////////////////////////////
         //Create alert dialog for deleting issues
-        AlertDialog.Builder b2 = new AlertDialog.Builder(this);
+        AlertDialog.Builder b2 = new AlertDialog.Builder(DayView.this);
         b2.setMessage("Warning! There was an error deleting the object");
         b2.setCancelable(true);
         b2.setPositiveButton(
@@ -82,7 +83,7 @@ public class DayView extends AppCompatActivity {
         final AlertDialog alertdel = b2.create();
         ////////////////////////////////////////////////////////////////////////////////////////////
         //Create alert dialog for empty fields
-        AlertDialog.Builder b3 = new AlertDialog.Builder(this);
+        AlertDialog.Builder b3 = new AlertDialog.Builder(DayView.this);
         b3.setMessage("Warning! A required field was left empty");
         b3.setCancelable(true);
         b3.setPositiveButton(
@@ -244,7 +245,7 @@ public class DayView extends AppCompatActivity {
         setminorcategories(goal_id);
         ////////////////////////////////////////////////////////////////////////////////////////////
         // initialize database
-        dbhelp = new DatabaseHelper(this);
+        dbhelp = new DatabaseHelper(DayView.this);
         //dbhelp.resetDB();
         ////////////////////////////////////////////////////////////////////////////////////////////
         //grab weekday from input and display it
@@ -493,7 +494,7 @@ public class DayView extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////////////////////
         //TEMPORARY PORTAL TO INITIAL LOGIN SCREEN.
         //TODO: DELETE THIS CODE BLOCK
-        final Context cdev = this;
+        final Context cdev = DayView.this;
        /* Button bdev = (Button) findViewById(R.id.button6);
         bdev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -719,6 +720,7 @@ public class DayView extends AppCompatActivity {
                 minor2.setBackgroundResource(R.drawable.rounded_border);
                 minor3.setBackgroundResource(R.drawable.rounded_border);
                 minor4.setBackgroundResource(R.drawable.rounded_border);*/
+                System.out.println(min);
                 spin.setSelection(min);
                 /*switch (min) {
                     case 0:
@@ -742,13 +744,13 @@ public class DayView extends AppCompatActivity {
     }
     public void switchDay(int nd)
     {
-        Intent dv = new Intent(this, DayView.class);
+        Intent dv = new Intent(DayView.this, DayView.class);
         dv.putExtra(MainActivity.DAY_ID, nd);
         startActivity(dv);
     }
     public void goToWeek()
     {
-        Intent dv = new Intent(this, MainActivity.class);
+        Intent dv = new Intent(DayView.this, MainActivity.class);
         startActivity(dv);
     }
     public void setminorcategories(int cat)
@@ -789,7 +791,7 @@ public class DayView extends AppCompatActivity {
         {
             System.err.println(e);
         }
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinAdd);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(DayView.this, android.R.layout.simple_spinner_item, spinAdd);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(dataAdapter);
         spin.setOnItemSelectedListener(new OnItemSelectedListener() {

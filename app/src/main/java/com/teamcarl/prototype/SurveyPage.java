@@ -1,5 +1,6 @@
 package com.teamcarl.prototype;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import javax.xml.transform.Result;
 
-public class SurveyPage extends AppCompatActivity {
+public class SurveyPage extends Activity {
     private DataAccess db = new DataAccess();
     private int guideIDToSend = -1;
     Context context = this;
@@ -27,6 +28,7 @@ public class SurveyPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        System.out.println("surveyhit");
         Intent intent = getIntent();
         int guideid = intent.getIntExtra("guide_id", 0);
         setContentView(R.layout.survey_question_show);
@@ -123,15 +125,27 @@ public class SurveyPage extends AppCompatActivity {
                                     if(majorcattab.next())
                                     {
                                         int majorcat = majorcattab.getInt("MajorCatID");
-                                        dbh.insertData(qGoalNames.get(i), majorcat, minorcat, i+1, i + 2, 5, "", "", 0);
-                                    }
+                                        String getMajorMinIndex = "select ID from MinorCat where MajorCatID = '" + majorcat + "'";
+                                        ResultSet majMinInd = db.getDataTable(getMajorMinIndex);
+                                        try {
+                                            if(majMinInd.next())
+                                                minorcat -= majMinInd.getInt("ID");
+                                                dbh.insertData(qGoalNames.get(i), majorcat, minorcat, i + 1, i + 2, 5, "", "", 0);
+                                            }
+                                        catch(Exception e)
+                                        {
+                                            System.err.println(e);
+                                        }
+                                        }
                                 }
                                 catch(Exception e)
-                                {}
+                                {
+                                    System.err.println(e);
+                                }
                             }
                         }
                         catch(Exception e){
-
+                            System.err.println(e);
                         }
                     }
                 }

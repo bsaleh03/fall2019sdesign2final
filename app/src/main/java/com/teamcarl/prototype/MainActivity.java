@@ -3,6 +3,7 @@ package com.teamcarl.prototype;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,7 +27,7 @@ import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Hashtable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private String m_Text = "";
     private String p_Text = "";
     private String p_Text2 = "";
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context context = this;
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("gib brand code");
         backDoor5=0;
         final LinearLayout linLay = new LinearLayout(this);
@@ -761,7 +762,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDayView(int d)
     {
-        Intent dv = new Intent(this, DayView.class);
+        Intent dv = new Intent(MainActivity.this, DayView.class);
         dv.putExtra(DAY_ID, d);
         startActivity(dv);
     }
@@ -808,7 +809,7 @@ public class MainActivity extends AppCompatActivity {
             if(p >= priorsort) {
                 curBar = (TextView) findViewById(timeWeekBars.get(s));
                 //index[countnum][1] = timeBars.get(s);
-                curBar.setText(nam);
+                //curBar.setText(nam);
                 for (int i = s; i < e; i++) {
 
 

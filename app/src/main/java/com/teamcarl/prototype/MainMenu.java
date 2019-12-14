@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +57,7 @@ public class MainMenu extends Activity implements Serializable {
         setContentView(R.layout.activity_main_menu);
 
         // sets data for guidename and guide id lists to populate UI.
+        System.out.println("afdasdf");
         getGuideLists();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview, guides);
@@ -76,13 +78,16 @@ public class MainMenu extends Activity implements Serializable {
                 if(switches.get(position) == 1)
                 {
                     Intent montIntent = new Intent(MainMenu.this, SurveyPage.class);
-                    montIntent.putExtra("guide_id", guideId);
+                    montIntent.putExtra("guide_id", Integer.decode(guideId));
+                    System.out.println("offtodasurvey");
                     startActivity(montIntent);
                 }
-                intent.putExtra("guideName", guideName);
-                intent.putExtra("guideId", guideId);
-                intent.putExtra("User", user);
-                startActivity(intent);
+                else {
+                    intent.putExtra("guideName", guideName);
+                    intent.putExtra("guideId", guideId);
+                    intent.putExtra("User", user);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -127,7 +132,7 @@ public class MainMenu extends Activity implements Serializable {
                             "JOIN [USERS] u ON u.BrandNumber = g.BrandNumber\n" +
                             "AND u.[userid] = '" + user.UserID + "'\n" +
                             "UNION\n" + // next query used to get guides that may not be in Brand (from referral)
-                            "SELECT DISTINCt g.GuideName, g.guideId\n" +
+                            "SELECT DISTINCt g.GuideName, g.guideId, g.Switch\n" +
                             "FROM  GUIDEHISTORY gh\n" +
                             "LEFT JOIN USERS u on gh.userid = u.userid\n" +
                             "AND u.[userid] = '" + user.UserID + "'\n" +
@@ -137,6 +142,7 @@ public class MainMenu extends Activity implements Serializable {
                 try {
                     while (result.next()) // loop through each row (first row is always empty/null, so we do next() right away)
                     {
+                        System.out.println( "result innot false");
                         guides.add(result.getString(1));
                         guideIds.add(result.getString(2));
                         if(result.getInt(3) == 0)
@@ -152,6 +158,7 @@ public class MainMenu extends Activity implements Serializable {
         } else {
             //reads guide file
             try {
+                System.out.println("result falso");
                 String[][] guideData = null;
                 String guideText = "";
                 FileInputStream fis1 = openFileInput("guideFile.txt");
