@@ -26,6 +26,9 @@
         <activity android:name=".NewMessage" android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity android:name=".fullMessage" />
         <activity android:name=".Guide" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DayView" />
+        <activity android:name=".SurveyPage" />
         <activity android:name=".FinalEvaluation" />
 
         <!--
