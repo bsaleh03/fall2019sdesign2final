@@ -49,64 +49,64 @@
             android:textSize="22sp" />
 
         <TextView
-            android:layout_row="2"
-            android:layout_column="0"
             android:id="@+id/activeGuidePurpose"
             android:layout_width="344dp"
-            android:layout_height="180dp"
+            android:layout_height="249dp"
+            android:layout_row="2"
+            android:layout_column="0"
             android:layout_gravity="center"
+            android:alpha=".3"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:alpha=".3"
             android:text="active GUIDE purpose is displayed here!"
             android:textColor="#FFFF00"
             android:textSize="24sp" />
 
 
         <ImageButton
+            android:id="@+id/useactivebutton"
+            android:layout_width="232dp"
+            android:layout_height="57dp"
             android:layout_row="3"
             android:layout_column="0"
-            android:layout_width="232dp"
-            android:layout_height="60dp"
-            android:id="@+id/useactivebutton"
-            android:background="@drawable/useactiveguide"
             android:layout_gravity="center_horizontal"
-            android:alpha="0" />
+            android:alpha="0"
+            android:background="@drawable/useactiveguide" />
 
         <ImageButton
+            android:id="@+id/exitbutton"
+            android:layout_width="232dp"
+            android:layout_height="89dp"
             android:layout_row="4"
             android:layout_column="0"
-            android:layout_width="232dp"
-            android:layout_height="60dp"
-            android:id="@+id/exitbutton"
-            android:background="@drawable/useactiveguide"
-            android:layout_gravity="center_horizontal"
-            android:alpha="0"
-            android:layout_marginBottom="0dp" />
-
-        <ImageButton
-            android:layout_row="5"
-            android:layout_column="0"
-            android:layout_width="232dp"
-            android:layout_height="60dp"
-            android:id="@+id/newguidebutton"
-            android:background="@drawable/useactiveguide"
-            android:layout_gravity="center_horizontal"
-            android:alpha="0"
-            android:layout_marginTop="0dp"
-            android:adjustViewBounds="false" />
-
-        <ImageButton
-            android:layout_row="6"
-            android:layout_column="0"
-            android:layout_width="232dp"
-            android:layout_height="60dp"
-            android:id="@+id/checkmemosbutton"
-            android:background="@drawable/checkmemos"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="0dp"
             android:alpha="0"
-            android:layout_marginTop="0dp" />
+            android:background="@drawable/useactiveguide" />
+
+        <ImageButton
+            android:id="@+id/newguidebutton"
+            android:layout_width="232dp"
+            android:layout_height="75dp"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="false"
+            android:alpha="0"
+            android:background="@drawable/useactiveguide" />
+
+        <ImageButton
+            android:id="@+id/checkmemosbutton"
+            android:layout_width="232dp"
+            android:layout_height="80dp"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:alpha="0"
+            android:background="@drawable/checkmemos" />
 
     </GridLayout>
 </RelativeLayout>
