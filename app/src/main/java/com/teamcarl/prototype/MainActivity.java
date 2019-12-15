@@ -1,8 +1,8 @@
 package com.teamcarl.prototype;
 
-import androidx.appcompat.app.AlertDialog;
+//import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -275,6 +277,22 @@ public class MainActivity extends Activity {
             }
         });
        // yeet=(Button) findViewById(R.id.yeet);*/
+        Button membutotn = findViewById(R.id.buttonToMemos);
+        membutotn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isConnectedOnline()) {
+                    Intent intent = new Intent(MainActivity.this, Messages.class);
+                    intent.putExtra("User", DatabaseHelper.getUser());
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Cannot check messages at this time. You must be online to check messages.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         ////////////////////////////////////////////////////////////////////////////////////////////
         //PRIORITY BUTTON STUFF
         ImageButton imageUp = findViewById(R.id.upImageButtonMain);
@@ -765,6 +783,16 @@ public class MainActivity extends Activity {
         Intent dv = new Intent(MainActivity.this, DayView.class);
         dv.putExtra(DAY_ID, d);
         startActivity(dv);
+    }
+
+    public boolean isConnectedOnline() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            return true;
+        } else
+            return false;
     }
 
     public void reloadCalendar(int timeweekbarIndex, int priorsort)

@@ -132,7 +132,7 @@ public class Activemenu extends Activity {
                 }
             }
         });
-
+        DatabaseHelper.setUser(user);
         useactive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

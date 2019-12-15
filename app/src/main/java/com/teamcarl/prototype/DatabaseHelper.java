@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private static User user;
     public static final String DATABASE_NAME = "Day.db";
     public static final String MON_TABLE = "This_day";
     public static final String USERINFO = "User_info";
@@ -203,5 +204,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return true;
 
+    }
+
+    public static void setUser(User U)
+    {
+        user = U;
+    }
+
+    public static User getUser()
+    {
+        return user;
     }
 }
