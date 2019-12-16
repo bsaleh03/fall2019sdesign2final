@@ -136,7 +136,10 @@ public class DataAccess implements Serializable{
 
     public ResultSet getDataTable(String query) // expect only one row and cowlumn to be returned
     {
-        try{
+        try
+
+
+        {
             con = connectionclass(un, pass, db, ip);
             if (con == null)
             {
