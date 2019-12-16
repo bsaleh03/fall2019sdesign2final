@@ -89,9 +89,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_3,minorcat);
         int startime = stime;
         int entime = etime;
-        if(startime < 166)
+        if(startime > 166)
             startime = 166;
-        if (entime < 167)
+        if (entime > 167)
             entime = 167;
         contentValues.put(COL_4, startime);
         contentValues.put(COL_5, entime);
@@ -124,8 +124,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_1,name);
         contentValues.put(COL_2,majorcat);
         contentValues.put(COL_3,minorcat);
-        contentValues.put(COL_4,stime);
-        contentValues.put(COL_5, eTime);
+        int startime = stime;
+        int entime = eTime;
+        if(startime > 166)
+            startime = 166;
+        if (entime > 167)
+            entime = 167;
+        contentValues.put(COL_4,startime);
+        contentValues.put(COL_5, entime);
         contentValues.put(COL_6, priority);
         contentValues.put(COL_7, notes);
         contentValues.put(COL_13, cod);
